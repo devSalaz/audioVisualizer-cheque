@@ -1,23 +1,19 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import { useState, Suspense } from "react";
+import { Canvas } from "@react-three/fiber";
+import ThreeScene from "./components/ThreeScene";
+import Song from "./components/Song";
+import Loader from "./components/Loader";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="Three-Container">
+      <Song />
+      <Canvas camera={{ fov: 50, far: 170 }}>
+        <Suspense fallback={<Loader />}>
+          <ThreeScene />
+        </Suspense>
+      </Canvas>
     </div>
   );
 }
